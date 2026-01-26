@@ -1,0 +1,17 @@
+.card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius-xl);
+  border: none;
+  box-shadow: 0 0 30px rgba(26, 188, 156, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.btn-primary {
+  background-color: var(--primary-teal);
+  border: none;
+  border-radius: var(--radius-lg);
+}
