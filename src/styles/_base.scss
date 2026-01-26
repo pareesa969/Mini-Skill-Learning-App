@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-black);
+  color: var(--text-white);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.container-fluid {
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 16px;
+  }
+}
