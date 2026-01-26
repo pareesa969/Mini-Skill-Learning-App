@@ -1,0 +1,6 @@
+.gradient-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    linear-gradient(135deg, #7f5af0, #3498db) border-box;
+}
