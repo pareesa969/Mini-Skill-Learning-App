@@ -15,24 +15,29 @@ export default function QuestionnaireFlow() {
 
     if (index < questions.length - 1) {
       setIndex(index + 1);
-    } else {
-      const res = await fetch("/api/profile", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers: updated }),
-      });
-      const data = await res.json();
-      setAiSummary(data.aiSummary);
+      return;
     }
+
+    const res = await fetch("/api/profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ answers: updated }),
+    });
+
+    if (!res.ok) {
+      console.error("Profile API failed:", await res.text());
+      return;
+    }
+
+    const data = await res.json();
+    setAiSummary(data.aiSummary);
   };
 
   if (aiSummary) {
     return (
       <div className="card p-4">
         <h4>Your AI Summary</h4>
-        <pre style={{ whiteSpace: "pre-wrap" }}>
-          {aiSummary}
-        </pre>
+        <pre>{aiSummary}</pre>
       </div>
     );
   }
