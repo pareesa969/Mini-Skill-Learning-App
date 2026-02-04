@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const ProfileSchema = new mongoose.Schema(
   {
-    userId: { type: String, index: true },
-    answers: { type: Array },
-    aiSummary: { type: String },
+    userId: { type: String, required: true, index: true },
+    answers: { type: Array, required: true },
+    aiSummary: { type: String, required: true },
   },
   { timestamps: true }
 );
