@@ -5,18 +5,22 @@ import { getOrCreateUserId } from "@/utils/getUserId";
 import { getProfileSummary } from "@/services/ai.service";
 
 export async function POST(req) {
-  const { answers } = await req.json();
+  try {
+    const { answers } = await req.json();
 
-  await connectDB();
-  const userId = getOrCreateUserId();
+    await connectDB();
+    const userId = getOrCreateUserId();
 
-  const aiSummary = await getProfileSummary(answers);
+    const aiSummary = await getProfileSummary(answers);
 
-  await Profile.create({
-    userId,
-    answers,
-    aiSummary,
-  });
+    await Profile.create({ userId, answers, aiSummary });
 
-  return NextResponse.json({ aiSummary });
+    return NextResponse.json({ aiSummary });
+  } catch (err) {
+    console.error("PROFILE API ERROR:", err);
+    return NextResponse.json(
+      { error: "Profile generation failed" },
+      { status: 500 }
+    );
+  }
 }
